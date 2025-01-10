@@ -1,0 +1,70 @@
+{% extends "tutor/base.html" %}
+
+{% block content %}
+<div class="container mx-auto p-6">
+
+    <a href="{% url 'billing' %}" class="inline-flex items-center px-1 py-1 mb-0 bg-gray-900 text-white rounded-md hover:bg-blue-700">
+        <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+        </svg>
+    </a>
+    <h1 class="text-3xl font-bold mb-6">{{ family.last_name }} - Family Dashboard</h1>
+
+    <!-- Summary Section -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+        <div class="bg-white p-4 rounded-lg shadow-md">
+            <h2 class="text-xl font-semibold">Lifetime Total Amount</h2>
+            <p class="text-2xl">${{ total_amount }}</p>
+        </div>
+        <div class="bg-white p-4 rounded-lg shadow-md">
+            <h2 class="text-xl font-semibold">Total Sessions</h2>
+            <p class="text-2xl">{{ past_appointments|length }}</p>
+        </div>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+    <!-- Amount Per Student -->
+    <div class="bg-white p-6 rounded-lg shadow-md mb-6">
+        <h2 class="text-2xl font-semibold mb-4">Amount Per Student</h2>
+        <ul class="divide-y divide-gray-200">
+            {% for student, amount in student_amounts.items %}
+                <li class="py-2 flex justify-between">
+                    <span>{{ student }}</span>
+                    <span>${{ amount }}</span>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    <!-- Past Appointments -->
+    <div class="bg-white p-6 rounded-lg shadow-md mb-6">
+        <h2 class="text-2xl font-semibold mb-4">Past Appointments</h2>
+        <ul class="divide-y divide-gray-200">
+            {% for appointment in past_appointments %}
+                <li class="py-2 flex justify-between">
+                    <span>{{ appointment.date|date:"m/d/Y" }} - {{ appointment.start_time|date:"h:i A" }} - {{ appointment.student.first_name }}</span>
+                    <span>
+                        {% if appointment.paid %}
+                            <button class="bg-green-500 text-white px-2 py-1 rounded-md" disabled>Paid</button>
+                        {% else %}
+                            <button class="bg-red-500 text-white px-2 py-1 rounded-md" hx-post="{% url 'mark_appointment_paid' appointment.id %}" hx-swap="outerHTML">Mark as Paid</button>
+                        {% endif %}
+                    </span>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    <!-- Upcoming Appointments -->
+    <div class="bg-white p-6 rounded-lg shadow-md mb-6">
+        <h2 class="text-2xl font-semibold mb-4">Upcoming Appointments</h2>
+        <ul class="divide-y divide-gray-200">
+            {% for appointment in upcoming_appointments %}
+                <li class="py-2 flex justify-between">
+                    <span>{{ appointment.date }} - {{ appointment.student.first_name }}</span>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>
+</div>
+{% endblock content %}

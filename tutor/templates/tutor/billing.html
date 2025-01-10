@@ -1,0 +1,60 @@
+{% extends "tutor/base.html" %}
+
+{% block content %}
+
+<div class="container mx-auto p-6">
+    <h1 class="text-3xl font-bold mb-6">Billing Dashboard</h1>
+
+    <!-- Summary Section -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+        <div class="bg-white p-4 rounded-lg shadow-md">
+            <h2 class="text-xl font-semibold">Amount Paid</h2>
+            <p class="text-2xl">${{ amount_paid }}</p>
+        </div>
+        <div class="bg-white p-4 rounded-lg shadow-md">
+            <h2 class="text-xl font-semibold">Amount Unpaid</h2>
+            <p class="text-2xl">${{ amount_unpaid }}</p>
+        </div>
+        <div class="bg-white p-4 rounded-lg shadow-md">
+            <h2 class="text-xl font-semibold">Amount from Upcoming Appointments</h2>
+            <p class="text-2xl">${{ amount_upcoming }}</p>
+        </div>
+        <div class="bg-white p-4 rounded-lg shadow-md">
+            <h2 class="text-xl font-semibold">Date Range</h2>
+            <p>{{ start_date }} - {{ end_date }}</p>
+        </div>
+    </div>
+
+    <!-- Date Filter Form and Amount Owed by Each Family -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+        <!-- Date Filter Form -->
+        <form method="get" action="{% url 'billing' %}" class="bg-white p-6 rounded-lg shadow-md">
+            <div class="grid grid-cols-1 gap-4">
+                <div>
+                    <label for="start_date" class="block text-sm font-medium text-gray-700">Start Date:</label>
+                    <input type="date" id="start_date" name="start_date" value="{{ start_date }}" class="mt-1 p-2 border border-gray-300 rounded-md w-full">
+                </div>
+                <div>
+                    <label for="end_date" class="block text-sm font-medium text-gray-700">End Date:</label>
+                    <input type="date" id="end_date" name="end_date" value="{{ end_date }}" class="mt-1 p-2 border border-gray-300 rounded-md w-full">
+                </div>
+            </div>
+            <button type="submit" class="mt-4 bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-700">Calculate</button>
+        </form>
+
+        <!-- Amount Owed by Each Family -->
+        <div class="bg-white p-6 rounded-lg shadow-md">
+            <h2 class="text-2xl font-semibold mb-4">Amount Owed by Each Family</h2>
+            <ul class="divide-y divide-gray-200">
+                {% for family, amount in family_amounts.items %}
+                    <li class="py-2 flex justify-between">
+                        <a href="{% url 'family_details' family_id=family.id %}" class="text-blue-500 hover:underline">{{ family }}</a>
+                        <span>${{ amount }}</span>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}

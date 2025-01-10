@@ -1,0 +1,35 @@
+{% extends "tutor/base.html" %}
+
+
+{% block content %}
+
+<h1>New Appointment</h1>
+
+<form action="{% url 'new_appointment' %}" method='post' enctype="multipart/form-data">
+    {% csrf_token %}
+    
+    <div class="form-group">
+        <label for="{{ form.student.id_for_label }}">Student:</label>
+        {{ form.student }}
+        <button type="button" onclick="window.location.href='{% url 'new_student' %}'">Add New Student</button>
+    </div>
+    
+    <div class="form-group">
+        <label for="{{ form.date.id_for_label }}">Date:</label>
+        {{ form.date }}
+    </div>
+    
+    <div class="form-group">
+        <label for="{{ form.duration.id_for_label }}">Duration:</label>
+        {{ form.start_time }} to {{ form.end_time }}
+    </div>
+    
+    <div class="form-group">
+        <label for="{{ form.subject.id_for_label }}">Subject:</label>
+        {{ form.subject }}
+    </div>
+    
+    <button type="submit" class="btn">Create Appointment</button>
+</form>
+
+{% endblock content %}

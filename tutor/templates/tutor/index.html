@@ -1,0 +1,44 @@
+{% extends "tutor/base.html" %}
+
+{% block content %}
+<div class="container mx-auto p-6">
+    <h1 class="text-4xl font-bold mb-6 text-center">Welcome to Tutor Flow</h1>
+    <p class="text-lg text-center mb-6">Manage your appointments and billing with ease.</p>
+
+    <!-- Features Section -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+        <div class="bg-white p-6 rounded-lg shadow-md text-center">
+            {% comment %} <img src="{% static 'icons/calendar.svg' %}" alt="Calendar" class="w-16 h-16 mx-auto mb-4"> {% endcomment %}
+            <h2 class="text-xl font-semibold mb-2">Appointment Scheduling</h2>
+            <p class="text-gray-700">Easily schedule and manage your tutoring appointments.</p>
+        </div>
+        <div class="bg-white p-6 rounded-lg shadow-md text-center">
+            {% comment %} <img src="{% static 'icons/billing.svg' %}" alt="Billing" class="w-16 h-16 mx-auto mb-4"> {% endcomment %}
+            <h2 class="text-xl font-semibold mb-2">Billing Management</h2>
+            <p class="text-gray-700">Keep track of payments and outstanding balances.</p>
+        </div>
+        <div class="bg-white p-6 rounded-lg shadow-md text-center">
+            {% comment %} <img src="{% static 'icons/reports.svg' %}" alt="Reports" class="w-16 h-16 mx-auto mb-4"> {% endcomment %}
+            <h2 class="text-xl font-semibold mb-2">Detailed Reports</h2>
+            <p class="text-gray-700">Generate detailed reports for your records.</p>
+        </div>
+    </div>
+
+    <!-- How It Works Section -->
+    <div class="bg-white p-6 rounded-lg shadow-md mb-6">
+        <h2 class="text-2xl font-semibold mb-4">How It Works</h2>
+        <ol class="list-decimal list-inside text-gray-700">
+            <li class="mb-2">Sign up and create your account.</li>
+            <li class="mb-2">Add your students and their details.</li>
+            <li class="mb-2">Schedule appointments and manage your calendar.</li>
+            <li class="mb-2">Track payments and manage billing.</li>
+            <li class="mb-2">Generate reports to keep track of your progress.</li>
+        </ol>
+    </div>
+
+    <!-- Call to Action Section -->
+    <div class="text-center">
+        <a href="{% url 'users:register' %}" class="bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-700">Get Started</a>
+    </div>
+</div>
+{% endblock content %}
