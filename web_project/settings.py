@@ -168,3 +168,5 @@ OAUTH2_PROVIDER = {
 }
 
 GOOGLE_TOKEN_FILE = 'token.json'
+
+CSRF_TRUSTED_ORIGINS = ['localhost', 'tutor-flow.com']
