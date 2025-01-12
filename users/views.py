@@ -18,7 +18,7 @@ def create_google_token(request, user):
         'client_secret.json',
         scopes=['https://www.googleapis.com/auth/calendar.events']
     )
-    flow.redirect_uri = 'http://localhost:8000/users/google_calendar_redirect'
+    flow.redirect_uri = 'https://tutor-flow.com/users/google_calendar_redirect'
 
     authorization_url, state = flow.authorization_url(
         access_type='offline',
