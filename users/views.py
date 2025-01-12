@@ -52,7 +52,7 @@ def google_calendar_redirect(request):
         scopes=['https://www.googleapis.com/auth/calendar.events'],
         state=state
     )
-    flow.redirect_uri = 'http://localhost:8000/users/google_calendar_redirect'
+    flow.redirect_uri = 'https://tutor-flow.com/users/google_calendar_redirect'
 
     authorization_response = request.build_absolute_uri()
     flow.fetch_token(authorization_response=authorization_response)
