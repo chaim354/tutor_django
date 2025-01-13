@@ -27,13 +27,13 @@ def billing(request):
     # Get the start and end dates from the request
     start_date = request.GET.get('start_date')
     end_date = request.GET.get('end_date')
+    now = timezone.now()
     if start_date and end_date:
         # Convert the dates to datetime objects
         start_date = timezone.datetime.strptime(start_date, '%Y-%m-%d')
         end_date = timezone.datetime.strptime(end_date, '%Y-%m-%d')
     else:
         # Default to the past week if no dates are provided
-        now = timezone.now()
         today = datetime.today()
         start_date = today - timedelta(days=(today.weekday() + 1) % 7)
         end_date = now
