@@ -172,3 +172,5 @@ GOOGLE_TOKEN_FILE = 'token.json'
 CSRF_TRUSTED_ORIGINS = [
     'https://tutor-flow.com',
 ]
+
+ADMINS = [('Chaim', 'chaim354@gmail.com'), ]
