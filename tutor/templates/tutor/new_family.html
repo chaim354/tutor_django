@@ -1,10 +1,33 @@
-
-
 <form hx-post="{% url 'submit_family' %}" class="form_student">
     <h1 class="text-2xl">New Family</h1>
-    <div class="form-group">
+    <div class="form-group m-3">
         {% csrf_token %}
-        {{ form.as_p }}
+        <label for="{{ form.last_name.id_for_label }}">Last Name:</label>
+        {{ form.last_name }}
+    </div>
+    <div class="form-group m-3">
+        <label for="{{ form.address.id_for_label }}">Address:</label>
+        {{ form.address }}
+    </div>
+    <div class="form-group m-3">
+        <label for="{{ form.city.id_for_label }}">City:</label>
+        {{ form.city }}
+    </div>
+    <div class="form-group m-3">
+        <label for="{{ form.state.id_for_label }}">State:</label>
+        {{ form.state }}
+    </div>
+    <div class="form-group m-3">
+        <label for="{{ form.zipcode.id_for_label }}">Zipcode:</label>
+        {{ form.zipcode }}
+    </div>
+    <div class="form-group m-3">
+        <label for="{{ form.price.id_for_label }}">Price:</label>
+        {{ form.price }}
+    </div>
+    <div class="form-group m-3">
+        <label for="{{ form.phone_number.id_for_label }}">Phone Number:</label>
+        {{ form.phone_number }}
     </div>
     <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 m-3">Create Family</button>
 </form>
