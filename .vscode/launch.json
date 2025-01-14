@@ -14,7 +14,12 @@
             "django": true,
             "autoStartBrowser": false,
             "program": "${workspaceFolder}\\manage.py",
-            "justMyCode": true
+            "justMyCode": true,
+            "env": {
+                "ALLOWED_HOSTS": "*",
+                "DEVELOPMENT_MODE": "True",
+                "DEBUG": "True",
+            }
         }
     ]
 }

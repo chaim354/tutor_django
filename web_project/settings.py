@@ -15,6 +15,8 @@ from django.core.management.utils import get_random_secret_key
 import sys
 import os
 import dj_database_url
+import string
+import random
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -23,7 +25,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.getenv("DJANGO_SECRET_KEY", get_random_secret_key())
+characters = string.ascii_letters + string.digits + string.punctuation
+secret_key = ''.join(random.choice(characters) for _ in range(50))
+SECRET_KEY = os.getenv("DJANGO_SECRET_KEY", secret_key)
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.getenv("DEBUG", "False") == "True"
@@ -175,5 +179,8 @@ CSRF_TRUSTED_ORIGINS = [
 
 ADMINS = [('Chaim', 'chaim354@gmail.com'), ]
 
-SECURE_SSL_REDIRECT = True
-SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+if os.getenv("DEVELOPMENT_MODE", "False") == "True":
+    SECURE_SSL_REDIRECT = False
+else:
+    SECURE_SSL_REDIRECT = True
+    SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
