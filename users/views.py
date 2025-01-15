@@ -42,19 +42,18 @@ def create_google_token(request, user):
         return redirect("error_page")
 
 def register(request):
-    if request.method != 'POST':
-        form = UserForm()
-    else:
+    if request.method == 'POST':
         form = UserForm(request.POST)
         if form.is_valid():
             user = form.save()
             login(request, user)
-            authorization_url = create_google_token(request, user)
-            return redirect(authorization_url)
-
-    context = {'form': form}
-    return render(request, 'registration/register.html', context)
-
+            if 'submit_google' in request.POST:
+                authorization_url = create_google_token(request, user)
+                return redirect(authorization_url)
+            return redirect('users:login')
+    else:
+        form = UserForm()
+    return render(request, 'registration/register.html', {'form': form})
 def google_calendar_redirect(request):
     try:
         state = request.GET.get('state')

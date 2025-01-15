@@ -19,6 +19,7 @@
    {% endfor %}
 
    <button name="submit" class="btn bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Register</button>
+   <button name="submit_google" class="btn bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded" value="submit_google">Connect to Google</button>
    <input type="hidden" name="next" value="{% url 'users:login' %}" />
 </form>
 </div>
