@@ -38,7 +38,6 @@ DEVELOPMENT_MODE = os.getenv("DEVELOPMENT_MODE", "True") == "True"
 # Application definition
 
 INSTALLED_APPS = [
-    "template_partials",
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -51,6 +50,8 @@ INSTALLED_APPS = [
     'theme',
     'django_browser_reload',
     'django_htmx',
+    'django_cotton.apps.SimpleAppConfig',
+    "template_partials.apps.SimpleAppConfig",
 ]
 
 MIDDLEWARE = [
@@ -71,8 +72,7 @@ ROOT_URLCONF = 'web_project.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
-        'APP_DIRS': True,
+        'DIRS': [BASE_DIR / "templates"],
         'OPTIONS': {
             'context_processors': [
                 'django.template.context_processors.debug',
@@ -80,11 +80,24 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
             ],
-            'loaders': [
-                "template_partials.loader.Loader",
-                "django.template.loaders.filesystem.Loader",
-                "django.template.loaders.app_directories.Loader",
-                "django.template.loaders.eggs.Loader",
+        "loaders": [
+                (
+                    "template_partials.loader.Loader",
+                    [
+                        (
+                            "django.template.loaders.cached.Loader",
+                            [
+                                "django_cotton.cotton_loader.Loader",
+                                "django.template.loaders.filesystem.Loader",
+                                "django.template.loaders.app_directories.Loader",
+                            ],
+                        )
+                    ],
+                )
+            ],
+             "builtins": [
+                "django_cotton.templatetags.cotton",
+                "template_partials.templatetags.partials",
             ],
         },
     },

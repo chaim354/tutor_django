@@ -16,8 +16,5 @@ urlpatterns = [
     path("submit_family/", views.submit_family, name="submit_family"),
     path('family_details/<int:family_id>/', views.family_details, name='family_details'),
     path('mark_appointment_paid/<int:appointment_id>/', views.mark_appointment_paid, name='mark_appointment_paid'),
-    
-    # path('rest/v1/calendar/init/', views.google_calendar_init, name='google_calendar_init'),
-    # path('rest/v1/calendar/redirect/', user_views.google_calendar_redirect, name='google_calendar_redirect'),
-    #path('rest/v1/calendar/events/', views.google_calendar_events, name='google_calendar_events'),
+    path('family_list/', views.family_list, name='family_list'),
 ]

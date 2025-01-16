@@ -1,0 +1,16 @@
+<table>
+    <thead>
+        <tr>
+            <th>Family Name</th>
+            <th>Cost</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for family in families %}
+            <tr>
+                <td>{{ family.last_name }}</td>
+                <td>{{ family.price }}</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>

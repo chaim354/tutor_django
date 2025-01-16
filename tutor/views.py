@@ -236,3 +236,19 @@ def mark_appointment_paid(request, appointment_id):
     return HttpResponse("""<button class="bg-green-500 text-white px-2 py-1 rounded-md" disabled>Paid</button>""")
 
 
+from django.shortcuts import render
+
+def family_list(request):
+    tab = request.GET.get('tab', '')
+    if tab == 'students':
+        students = Student.objects.all()
+        return render(request, 'tutor/partials/students.html', {'students': students})
+    elif tab == 'families':
+        families = Family.objects.all()
+        return render(request, 'tutor/partials/families.html', {'families': families})
+    elif tab == 'appointments':
+        appointments = Appointment.objects.all()
+        return render(request, 'tutor/partials/appointments.html', {'appointments': appointments})
+    else:
+        students = Student.objects.all()
+        return render(request, 'tutor/family_list.html', {'students': students})
