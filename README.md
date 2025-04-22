@@ -14,10 +14,10 @@
 - 💳 **Billing & Invoicing**  
   Track session fees, mark payments, and generate invoices.
 
-- 🔗 **Third-Party Calendar Integration** *(Coming Soon)*  
+- 🔗 **Third-Party Calendar Integration** 
   Sync your sessions with Google Calendar, Outlook, and more.
 
-- 📊 **Dashboard** *(In Development)*  
+- 📊 **Dashboard** 
   View upcoming sessions, recent payments, and student engagement at a glance.
 
 - 📁 **Student Management**  
@@ -33,7 +33,7 @@ TutorFlow is currently under active development. The core scheduling and billing
 |----------------------------|----------------|
 | Session Scheduling         | ✅ Complete     |
 | Billing System             | ✅ MVP Done     |
-| Calendar Integration       | 🛠️ In Progress |
+| Calendar Integration       | ✅ MVP Done  |
 | Dashboard & Analytics      | 🚧 Planned      |
 | User Settings & Preferences| 🛠️ In Progress |
 
@@ -41,24 +41,7 @@ TutorFlow is currently under active development. The core scheduling and billing
 
 ## 🛠️ Tech Stack
 
-- **Frontend**: React.js / Next.js *(or your framework of choice)*
-- **Backend**: Node.js / Express / MongoDB *(customize if different)*
-- **Authentication**: JWT-based auth *(or any other method used)*
-- **Calendar API**: Google Calendar API, Microsoft Graph *(planned)*
+- **Frontend**: HTML / HTMX *(or your framework of choice)*
+- **Backend**: Python / Django / Postgres *(customize if different)*
 
----
 
-## 🚀 Getting Started
-
-```bash
-# Clone the repo
-git clone https://github.com/yourusername/tutorflow.git
-
-# Navigate to the project directory
-cd tutorflow
-
-# Install dependencies
-npm install
-
-# Start the development server
-npm run dev
